@@ -14,3 +14,8 @@ isLoading
 {
 	return current.isLoading;
 }
+
+split
+{
+	return current.isLoading && !old.isLoading;
+}
