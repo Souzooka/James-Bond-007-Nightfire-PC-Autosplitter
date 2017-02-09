@@ -54,52 +54,26 @@ start
 
 split
 {
-	// true is taking the place of unimplemented settings
-	switch ((string)current.movieName) {
-		case "m1_outro":
-			if (settings["m1"] && current.movieName != old.movieName) {
-				return true;
-			}
-			break;
-		case "m2_outro":
-			if (settings["m2"] && current.movieName != old.movieName) {
-				return true;
-			}
-			break;
-		case "m3_outro":
-			if (settings["m3"] && current.movieName != old.movieName) {
-				return true;
-			}
-			break;
-		case "m4_outro":
-			if (settings["m4"] && current.movieName != old.movieName) {
-				return true;
-			}
-			break;
-		case "m5_outro":
-			if (settings["m5"] && current.movieName != old.movieName) {
-				return true;
-			}
-			break;
-		case "m6_outro":
-			if (settings["m6"] && current.movieName != old.movieName) {
-				return true;
-			}
-			break;
-		case "m7_outro":
-			if (settings["m7"] && current.movieName != old.movieName) {
-				return true;
-			}
-			break;
-		case "m8_outro":
-			if (settings["m8"] && current.movieName != old.movieName) {
-				return true;
-			}
-			break;
-		case "M9_OBJ_E":
-			if (settings["m9"] && current.movieName != old.movieName) {
-				return true;
-			}
-			break;
+	if (current.movieName != old.movieName) {
+		switch ((string)current.movieName) {
+			case "m1_outro":
+				return settings["m1"];
+			case "m2_outro":
+				return settings["m2"];
+			case "m3_outro":
+				return settings["m3"];
+			case "m4_outro":
+				return settings["m4"];
+			case "m5_outro":
+				return settings["m5"];
+			case "m6_outro":
+				return settings["m6"];
+			case "m7_outro":
+				return settings["m7"];
+			case "m8_outro":
+				return settings["m8"];
+			case "M9_OBJ_E":
+				return settings["m9"];
+		}
 	}
 }
