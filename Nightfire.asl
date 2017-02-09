@@ -1,7 +1,10 @@
 state("bond2", "v5.9.8")
 {
-	bool isLoading : "engine.dll", 0x18BE0E8;
-	string2 mapName : "engine.dll", 0x1B7AB0C;
+	string11 loadingImg : "GUI.dll", 0x32A37;
+	// Note: bondHP changes to 0xFFFFFFFF when dying in game, not to 0.
+	uint bondHP : "engine.dll", 0x1B870C;
+
+	string12 mapName : "amxmodx_mm.dll", 0xE37CE;
 	bool hasGameStarted : "item_helicopter_amxx.dll", 0x26FB0;
 
 	string8 movieName : "client.dll", 0xB0D50
@@ -12,21 +15,24 @@ init
 {
 	print("modules.First().ModuleMemorySize == " + "0x" + modules.First().ModuleMemorySize.ToString("X8"));
 
+	vars.startLoadingCheck = true;
 }
 
 update
 {
-	print (current.movieName);
+	print(vars.startLoadingCheck.ToString());
 }
 
 isLoading
 {
-	return current.isLoading;
+	return current.loadingImg == "loading.png" && current.bondHP == 0;
 }
 
 start
 {
-	return current.hasGameStarted == true && old.hasGameStarted == false;
+	if (current.loadingImg == "loading.png" && current.mapName == "m1_austria01") {
+		return true;
+	}
 }
 
 split
