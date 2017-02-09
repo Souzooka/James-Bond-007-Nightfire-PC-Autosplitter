@@ -1,8 +1,12 @@
 state("bond2", "v5.9.8")
 {
 	string11 loadingImg : "GUI.dll", 0x32A37;
-	// Note: bondHP changes to 0xFFFFFFFF when dying in game, not to 0.
+	
+
 	uint bondHP : "engine.dll", 0x1B870C;
+	float bondPosY : "engine.dll", 0x1B87F4;
+
+	
 
 	string12 mapName : "amxmodx_mm.dll", 0xE37CE;
 	bool hasGameStarted : "item_helicopter_amxx.dll", 0x26FB0;
@@ -25,7 +29,7 @@ update
 
 isLoading
 {
-	return current.loadingImg == "loading.png" && current.bondHP == 0;
+	return current.loadingImg == "loading.png" && current.bondHP == 0 && current.bondPosY == 0;
 }
 
 start
