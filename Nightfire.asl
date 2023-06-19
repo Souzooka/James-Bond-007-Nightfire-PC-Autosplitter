@@ -1,7 +1,7 @@
-state("bond2", "v5.9.8")
+state("Bond")
 {
 	// for start
-	string12 mapName : "amxmodx_mm.dll", 0xE37CE;
+	string32 map : "engine.dll", 0x2C028, 0x4;;
 
 	// for isLoading
 	string11 loadingImg : "GUI.dll", 0x32A37;
@@ -47,7 +47,7 @@ isLoading
 
 start
 {
-	if (current.loadingImg == "loading.png" && current.mapName == "m1_austria01") {
+	if (current.loadingImg == "loading.png" && current.map == "/m1_austria01.bsp") {
 		return true;
 	}
 }
@@ -72,8 +72,11 @@ split
 				return settings["m7"];
 			case "m8_outro":
 				return settings["m8"];
-			case "M9_OBJ_E":
-				return settings["m9"];
 		}
 	}
+	if(old.movieName == "M9_OBJ_E" || current.movieName == "M9_OBJ_E");
+			if(current.bondHP == 0 && current.bondPosY == 0);
+				if(current.loadingImg == "er"){
+		                     return settings["m9"];
+				}
 }
