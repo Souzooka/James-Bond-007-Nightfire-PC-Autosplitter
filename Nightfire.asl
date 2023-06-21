@@ -20,24 +20,26 @@ startup
 {
 	settings.Add("splits", true, "All Splits");
 
-	settings.Add("m1", true, "Austria", "splits");
-	settings.Add("m2", true, "Airfield", "splits");
-	settings.Add("m3", true, "Japan", "splits");
-	settings.Add("m4", true, "Infiltrate", "splits");
-	settings.Add("m5", true, "Power", "splits");
-	settings.Add("m6", true, "Escape", "splits");
-	settings.Add("m7", true, "Island", "splits");
-	settings.Add("m8", true, "Missile", "splits");
-	settings.Add("m9", true, "Space", "splits");
-}
+	settings.Add("m1_outro", true, "Austria", "splits");
+	settings.Add("M2_OBJ9_", true, "Airfield", "splits");
+	settings.Add("m3_outro", true, "Japan", "splits");
+	settings.Add("m4_outro", true, "Infiltrate", "splits");
+	settings.Add("m5_outro", true, "Power", "splits");
+	settings.Add("m6_outro", true, "Escape", "splits");
+	settings.Add("m7_outro", true, "Island", "splits");
+	settings.Add("m8_outro", true, "Missile", "splits");
+	settings.Add("M9_OBJ_E", true, "Space", "splits");
 
-init
-{
-	print("modules.First().ModuleMemorySize == " + "0x" + modules.First().ModuleMemorySize.ToString("X8"));
-
-	if (modules.First().ModuleMemorySize == 0x03823000) {
-		version = "v5.9.8";
-	}
+		vars.movieAdjust = new HashSet<string> {
+		{"m1_outro"},
+		{"M2_OBJ9_"},
+		{"m3_outro"},
+                {"m4_outro"},
+		{"m5_outro"},
+		{"m6_outro"},
+		{"m7_outro"},
+		{"m8_outro"}
+	};
 }
 
 isLoading
@@ -54,29 +56,21 @@ start
 
 split
 {
-	if (current.movieName != old.movieName) {
-		switch ((string)current.movieName) {
-			case "m1_outro":
-				return settings["m1"];
-			case "m2_outro":
-				return settings["m2"];
-			case "m3_outro":
-				return settings["m3"];
-			case "m4_outro":
-				return settings["m4"];
-			case "m5_outro":
-				return settings["m5"];
-			case "m6_outro":
-				return settings["m6"];
-			case "m7_outro":
-				return settings["m7"];
-			case "m8_outro":
-				return settings["m8"];
-		}
-	}
+    if(current.loadingImg != old.loadingImg) {
+			if(current.bondHP == 0 && current.bondPosY == 0);
+				if(vars.movieAdjust.Contains(current.movieName)){
+					switch ((string)current.loadingImg){
+						case "it":
+						return settings[(current.movieName)];
+					}
+				}
+				}
+
+
+
 	if(old.movieName == "M9_OBJ_E" || current.movieName == "M9_OBJ_E");
 			if(current.bondHP == 0 && current.bondPosY == 0);
 				if(current.loadingImg == "er"){
-		                     return settings["m9"];
+		return settings["M9_OBJ_E"];
 				}
 }
