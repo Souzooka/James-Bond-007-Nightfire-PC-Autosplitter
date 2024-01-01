@@ -44,7 +44,7 @@ startup
 
 isLoading
 {
-	return current.loadingImg == "loading.png" && current.bondHP == 0 && current.bondPosY == 0;
+	return current.loadingImg == "loading.png" && current.bondHP == 0 && current.bondPosY == 0 || current.loadingImg == "it" && current.bondHP == 0 && current.bondPosY == 0;
 }
 
 start
